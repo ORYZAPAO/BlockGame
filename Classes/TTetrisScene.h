@@ -1,0 +1,28 @@
+#ifndef __TTetris_SCENE_H__
+#define __TTetris_SCENE_H__
+
+#include "cocos2d.h"
+
+class TTetris : public cocos2d::Layer
+{
+public:
+    static cocos2d::Scene* createScene();
+
+    virtual bool init();
+    
+    // a selector callback
+    void menuCloseCallback(cocos2d::Ref* pSender);
+    
+    // implement the "static create()" method manually
+    CREATE_FUNC(TTetris);
+
+    // Sprite Data
+    CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, m_Background, Background);
+    CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, m_Piece, Piece);
+
+
+    //
+   ~TTetris();
+};
+
+#endif // __TTetris_SCENE_H__
