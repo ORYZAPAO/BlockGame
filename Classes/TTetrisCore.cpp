@@ -27,40 +27,88 @@ using namespace PrityTetris;
 }
 
 
-/* Collision Check
+/* Get Block Data Pointer
  *
  */
- bool TCore::IsCollision(Parts partsNo, const int posx, const int posy){
+const char** TCore::GetBlockData(Block &blk){
+  const char **p;
+  
+  /// Select Parts
+  if     ( blk._Number == Parts::Bar   ) p = m_Pat_Bar;
+  else if( blk._Number == Parts::L     ) p = m_Pat_L;
+  else if( blk._Number == Parts::RevL  ) p = m_Pat_RevL;
+  else if( blk._Number == Parts::Z     ) p = m_Pat_Z;
+  else if( blk._Number == Parts::RevZ  ) p = m_Pat_RevZ;
+  else if( blk._Number == Parts::Totsu ) p = m_Pat_Totsu;
+  else  p = nullptr;
+  assert( p != nullptr);
+  
+  /// Select PartsSubType
+  p += ( PartsSizeY * blk._SubNum );
+  
+  return p;
+}
 
-   const char **p;
-   bool retcode;
-   
-   //enum Parts { Bar=0, L=1, RevL=2, Z=3, RevZ=4, Totsu=5};
-   //const char* m_Pat_Bar[20]={
-   if     ( partsNo == Parts::Bar   ) p = m_Pat_Bar;
-   else if( partsNo == Parts::L     ) p = m_Pat_L;
-   else if( partsNo == Parts::RevL  ) p = m_Pat_RevL;
-   else if( partsNo == Parts::Z     ) p = m_Pat_Z;
-   else if( partsNo == Parts::RevZ  ) p = m_Pat_RevZ;
-   else if( partsNo == Parts::Totsu ) p = m_Pat_Totsu;
-   else  p = nullptr;
-   assert( p != nullptr);
-   
-   retcode = false;
-   for (int xx = 0; xx<PartsSizeX; xx++) {
-     for (int yy =0; yy<PartsSizeY; yy++) {
 
-       // Check Over
-       if( ((posx+xx) >= m_Width ) ||
-           ((posy+yy) >= m_Height) ){ goto END; }
+/* Judge Collision
+ *
+ */
+bool TCore::IsCollision(Block blk, const int posx, const int posy){
+  const char **p;
+  bool retcode;
+   
+  // Block
+  p = GetBlockData(blk);
+   
+  // Judge Collision
+  retcode = false;
+  for (int xx = 0; xx<PartsSizeX; xx++) {
+    for (int yy =0; yy<PartsSizeY; yy++) {
+      // Check Over
+      if( p[xx][yy] == '0' ){
+        if( ((posx+xx) >= m_Width ) ||
+            ((posy+yy) >= m_Height) ){ goto END; }
        
-       // Judge Collision
-       if( (p[xx][yy] == '0') && (m_Matrix[posx+xx][posy+yy]==true) ){ goto END;}
-     }
-   }
-   retcode = true;
-   
+        // Judge Collision
+        if( m_Matrix[posx+xx][posy+yy] == true ){ goto END;}
+      }
+    }
+  }
+  retcode = true;
+
+  //
  END:
    return retcode;
- }
+}
+
+
+/* Put Block
+ *
+ * Write Block Image in Matrix
+ */
+void  TCore::PutBlock(Block blk,  const int posx, const int posy){
+  if( IsCollision(blk, posx, posy) == false ){ return; }
+
+  const char **p = GetBlockData(blk);
+
+  for(int xx=0; xx<PartsSizeX; xx++){
+    
+    if( (posx+xx) >= m_Width ){ continue; }
+    
+    for(int yy=0; yy<PartsSizeY; yy++){
+      if( p[xx][yy] == '0' ){
+        // Check Over
+        if( ((posx+xx) >= m_Width ) ||
+            ((posy+yy) >= m_Height) ){ continue; }
+        //
+        m_Matrix[xx+posx][yy+posy] = true;
+      }
+    }
+  }
+
+END:
+  return;
+  
+}
+
 

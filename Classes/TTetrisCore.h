@@ -4,13 +4,27 @@
 
 #include<vector>	
 
+
+
 namespace PrityTetris{
 
-class TCore {
-  
+  //
   enum Parts { Bar=0, L=1, RevL=2, Z=3, RevZ=4, Totsu=5};
 
-  const char* m_Pat_Bar[20]={
+  //
+  class Block{
+  public:
+    Parts _Number;
+    int   _SubNum;
+  
+    Block(Parts Num=Parts::Bar, int subNum=0):_Number(Num), _SubNum(subNum){}
+  };
+  
+  
+  //
+  class TCore {
+  
+  const char *m_Pat_Bar[20]={
     "..0..",
     "..0..",
     "..0..",
@@ -171,16 +185,16 @@ class TCore {
    std::vector< std::vector<int> >  m_BackMatrix;
 
 public:
-   TCore(const int x=10, const int y=20):m_Width(x), m_Height(y){
+    TCore(const int x=10, const int y=20):m_Width(x), m_Height(y){
      Resize(x,y);
-   }
-   ~TCore() {}
+    }
+    ~TCore() {}
 
-   void Resize(const int x, const int y);
-   bool IsCollision(Parts parts, const int x, const int y);
-
-
-};
+    void         Resize(const int x, const int y);
+    const char** GetBlockData(Block &blk);
+    bool         IsCollision(Block blk, const int x, const int y);
+    void         PutBlock(Block blk,  const int posx, const int posy);
+  };
 
 }; // namespace PrityTetris{
 
