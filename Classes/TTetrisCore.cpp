@@ -1,7 +1,9 @@
 
+#include <cassert>
+
 #include"TTetrisCore.h"
 
-using namespace PretyTetris;
+using namespace PrityTetris;
 
 /*
  *
@@ -25,12 +27,40 @@ using namespace PretyTetris;
 }
 
 
- bool TCore::IsPutParts(Parts parts, const int posx, const int posy){
+/* Collision Check
+ *
+ */
+ bool TCore::IsCollision(Parts partsNo, const int posx, const int posy){
 
-   for (int xx = posx; xx<m_Width; xx++) {
-     for (int yy = posy; yy<m_Height; yy++) {
+   const char **p;
+   bool retcode;
+   
+   //enum Parts { Bar=0, L=1, RevL=2, Z=3, RevZ=4, Totsu=5};
+   //const char* m_Pat_Bar[20]={
+   if     ( partsNo == Parts::Bar   ) p = m_Pat_Bar;
+   else if( partsNo == Parts::L     ) p = m_Pat_L;
+   else if( partsNo == Parts::RevL  ) p = m_Pat_RevL;
+   else if( partsNo == Parts::Z     ) p = m_Pat_Z;
+   else if( partsNo == Parts::RevZ  ) p = m_Pat_RevZ;
+   else if( partsNo == Parts::Totsu ) p = m_Pat_Totsu;
+   else  p = nullptr;
+   assert( p != nullptr);
+   
+   retcode = false;
+   for (int xx = 0; xx<PartsSizeX; xx++) {
+     for (int yy =0; yy<PartsSizeY; yy++) {
+
+       // Check Over
+       if( ((posx+xx) >= m_Width ) ||
+           ((posy+yy) >= m_Height) ){ goto END; }
+       
+       // Judge Collision
+       if( (p[xx][yy] == '0') && (m_Matrix[posx+xx][posy+yy]==true) ){ goto END;}
      }
    }
-    return true;
+   retcode = true;
+   
+ END:
+   return retcode;
  }
 

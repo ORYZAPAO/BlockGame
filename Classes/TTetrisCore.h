@@ -4,10 +4,10 @@
 
 #include<vector>	
 
-namespace PretyTetris{
+namespace PrityTetris{
 
 class TCore {
-
+  
   enum Parts { Bar=0, L=1, RevL=2, Z=3, RevZ=4, Totsu=5};
 
   const char* m_Pat_Bar[20]={
@@ -165,6 +165,8 @@ class TCore {
    int m_Width;
    int m_Height;
 
+  const int PartsSizeX=5, PartsSizeY=5;
+  
    std::vector< std::vector<int> >  m_Matrix;
    std::vector< std::vector<int> >  m_BackMatrix;
 
@@ -175,12 +177,12 @@ public:
    ~TCore() {}
 
    void Resize(const int x, const int y);
-   bool IsPutParts(Parts parts, const int x, const int y);
+   bool IsCollision(Parts parts, const int x, const int y);
 
 
 };
 
-}; // namespace PretyTetris{
+}; // namespace PrityTetris{
 
 
 #endif // __TTETRISCORE_H
