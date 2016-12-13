@@ -86,21 +86,19 @@ bool TCore::IsCollision(Block blk, const int posx, const int posy){
  *
  * Write Block Image in Matrix
  */
-void  TCore::PutBlock(Block blk,  const int posx, const int posy){
-  if( IsCollision(blk, posx, posy) == false ){ return; }
+void TCore::PutBlock(Block blk, const int posx, const int posy){
+  
+  if( !IsCollision(blk, posx, posy) ) return;
 
   const char **p = GetBlockData(blk);
 
   for(int xx=0; xx<PartsSizeX; xx++){
-    
-    if( (posx+xx) >= m_Width ){ continue; }
+    if( (posx+xx) >= m_Width ) continue;
     
     for(int yy=0; yy<PartsSizeY; yy++){
+      if( (posy+yy) >= m_Height ) continue;
+
       if( p[xx][yy] == '0' ){
-        // Check Over
-        if( ((posx+xx) >= m_Width ) ||
-            ((posy+yy) >= m_Height) ){ continue; }
-        //
         m_Matrix[xx+posx][yy+posy] = true;
       }
     }
@@ -108,7 +106,12 @@ void  TCore::PutBlock(Block blk,  const int posx, const int posy){
 
 END:
   return;
-  
 }
 
 
+/* Draw
+ *
+ *
+ */
+void TCore::Draw(){
+}
