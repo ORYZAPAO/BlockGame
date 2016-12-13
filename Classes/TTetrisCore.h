@@ -194,6 +194,8 @@ public:
     const char** GetBlockData(Block &blk);
     bool         IsCollision(Block blk, const int x, const int y);
     void         PutBlock(Block blk,  const int posx, const int posy);
+    void         Draw();
+
   };
 
 }; // namespace PrityTetris{
