@@ -24,7 +24,7 @@ namespace PrityTetris{
   //
   class TCore {
   
-  const char *m_Pat_Bar[20]={
+    const char *m_Pat_Bar[20]={
     "..0..",
     "..0..",
     "..0..",
@@ -174,8 +174,6 @@ namespace PrityTetris{
     "..0..",
     "....."  };
 
-///    bool 
-
    int m_Width;
    int m_Height;
 
@@ -194,7 +192,9 @@ public:
     const char** GetBlockData(Block &blk);
     bool         IsCollision(Block blk, const int x, const int y);
     void         PutBlock(Block blk,  const int posx, const int posy);
-    void         Draw();
+    bool         IsRemovingBlock();
+    
+    std::vector< std::vector<int> > *GetMatrics(){ return &m_Matrix; }
 
   };
 
