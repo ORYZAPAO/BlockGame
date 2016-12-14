@@ -109,9 +109,10 @@ END:
 }
 
 
-/* Draw
+/* IsRemovingBlock
  *
- *
+ * Check if Remove the block
  */
-void TCore::Draw(){
+bool  TCore::IsRemovingBlock(){
+  return false;
 }
