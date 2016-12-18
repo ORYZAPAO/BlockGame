@@ -1,7 +1,8 @@
 #include "TTetrisScene.h"
 #include "SimpleAudioEngine.h"
 
-#include  "TTetrisCore.h"
+#include  "TTetrisCtrl.h"
+
 
 USING_NS_CC;
 
