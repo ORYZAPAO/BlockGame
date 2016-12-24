@@ -52,7 +52,7 @@ bool TTetris::init()
                                            "CloseSelected.png",
                                            CC_CALLBACK_1(TTetris::menuCloseCallback, this));
     
-    closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
+    closeItem->setPosition(Vec2(origin.x + visibleSize.width -closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
 
     // create menu, it's an autorelease object
@@ -66,17 +66,18 @@ bool TTetris::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    // Sprite;
 
+    auto  layer = Layer::create();
 
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 15);
+    ///
+    auto label = Label::createWithTTF("Hello,TTetris World", "fonts/Marker Felt.ttf", 15);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
                             origin.y + visibleSize.height - label->getContentSize().height));
 
     // add the label as a child to this layer
-    this->addChild(label, 1);
+    layer->addChild(label, 1);
 
     // add "TTetris" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
@@ -90,10 +91,15 @@ bool TTetris::init()
     sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->getPiece()->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
+  
+  
     // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
-    this->addChild(this->getPiece(), 0);
+    layer->addChild(sprite, 0);
+    layer->addChild(this->getPiece(), 0);
 
+  
+  this->addChild(layer);
+  
     return true;
 }
 
