@@ -6,6 +6,10 @@
 
 USING_NS_CC;
 
+// --------------------------------------------------
+// Scene* TTetris::createScene()
+//
+// --------------------------------------------------
 Scene* TTetris::createScene()
 {
     // 'scene' is an autorelease object
@@ -21,7 +25,11 @@ Scene* TTetris::createScene()
     return scene;
 }
 
+// --------------------------------------------------
+// TTetris::init()
+//
 // on "init" you need to initialize your instance
+// --------------------------------------------------
 bool TTetris::init()
 {
     //////////////////////////////
@@ -90,6 +98,8 @@ bool TTetris::init()
 }
 
 
+// --------------------------------------------------
+// --------------------------------------------------
 void TTetris::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
@@ -105,7 +115,10 @@ void TTetris::menuCloseCallback(Ref* pSender)
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 }
 
- TTetris::~TTetris() {
+// --------------------------------------------------
+// --------------------------------------------------
+TTetris::~TTetris() {
+   
   CC_SAFE_RELEASE_NULL(m_Background);
   CC_SAFE_RELEASE_NULL(this->m_Piece);
   return;

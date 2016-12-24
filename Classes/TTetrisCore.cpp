@@ -5,9 +5,9 @@
 
 using namespace PrityTetris;
 
-/*
+/* --------------------------------------------------
  *
- */ 
+ * ------------------------------------------------ */
  void TCore::Resize(const int x, const int y) {
    m_Width = x; 
    m_Width = y;
@@ -27,9 +27,10 @@ using namespace PrityTetris;
 }
 
 
-/* Get Block Data Pointer
+/* --------------------------------------------------
+ * Get Block Data Pointer
  *
- */
+ * ------------------------------------------------ */
 const char** TCore::GetBlockData(Block &blk){
   const char **p;
   
@@ -49,10 +50,10 @@ const char** TCore::GetBlockData(Block &blk){
   return p;
 }
 
-
-/* Judge Collision
+/* --------------------------------------------------
+ * Judge Collision
  *
- */
+ * ------------------------------------------------ */
 bool TCore::IsCollision(Block blk, const int posx, const int posy){
   const char **p;
   bool retcode;
@@ -82,10 +83,11 @@ bool TCore::IsCollision(Block blk, const int posx, const int posy){
 }
 
 
-/* Put Block
+/* --------------------------------------------------
+ * Put Block
  *
  * Write Block Image in Matrix
- */
+ * ------------------------------------------------ */
 void TCore::PutBlock(Block blk, const int posx, const int posy){
   
   if( !IsCollision(blk, posx, posy) ) return;
@@ -109,10 +111,11 @@ END:
 }
 
 
-/* IsRemovingBlock
+/* --------------------------------------------------
+ * IsRemovingBlock
  *
  * Check if Remove the block
- */
+ * ------------------------------------------------ */
 bool  TCore::IsRemovingBlock(){
   return false;
 }
