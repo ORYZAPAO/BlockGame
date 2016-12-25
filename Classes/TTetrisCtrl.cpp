@@ -19,7 +19,7 @@ TCtrl::~TCtrl() {
   Vec2 origin = Director::getInstance()->getVisibleOrigin();
   ///setPiece(Sprite::create("Piece.png"));
 
-  setPiece(Sprite::create("piece.png"));
+  setPiece(Sprite::create("Piece.png"));
   _piece->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
   // Draw Piece
