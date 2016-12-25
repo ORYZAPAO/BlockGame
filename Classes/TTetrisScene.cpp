@@ -80,7 +80,8 @@ bool TTetris::init()
 
     // add the label as a child to this layer
     layer->addChild(label, 1);
-
+    //layer->retain();
+  
     // add "TTetris" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
  
