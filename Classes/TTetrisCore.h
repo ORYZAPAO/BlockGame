@@ -4,9 +4,7 @@
 
 #include<vector>	
 
-
-
-namespace PrityTetris{
+namespace PrettyTetris{
 
   //
   enum Parts { Bar=0, L=1, RevL=2, Z=3, RevZ=4, Totsu=5};
@@ -198,8 +196,7 @@ public:
 
   };
 
-}; // namespace PrityTetris{
-
+};
 
 #endif // __TTETRISCORE_H
 

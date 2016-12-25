@@ -41,7 +41,7 @@ bool TTetris::init()
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+    
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -60,14 +60,16 @@ bool TTetris::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
+
     /////////////////////////////
     // 3. add your codes below...
 
     // add a label shows "Hello World"
     // create and initialize a label
     
-
+    ///
     auto  layer = Layer::create();
+    setLayer(layer);
 
     ///
     auto label = Label::createWithTTF("Hello,TTetris World", "fonts/Marker Felt.ttf", 15);
@@ -83,23 +85,27 @@ bool TTetris::init()
     auto sprite = Sprite::create("HelloWorld.png");
  
     //auto sprite2 = Sprite::create("Box.png");
-
-    this->setBackground( Sprite::create("Backgrownd.png") );
-    this->setPiece(Sprite::create("Piece.png"));
+    this->setBackground( Sprite::create("Background.png") );
 
     // position the sprite on the center of the screen
     sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-    this->getPiece()->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    ///this->getPiece()->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
-  
+    _background->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
   
     // add the sprite as a child to this layer
+    layer->addChild(_background);
     layer->addChild(sprite, 0);
-    layer->addChild(this->getPiece(), 0);
 
-  
-  this->addChild(layer);
-  
+    this->addChild(layer);
+    _tctrl.setLayer(layer);
+    _tctrl.Init();
+
+    ///layer->addChild(this->getPiece(), 0);
+      
+
+    
+
     return true;
 }
 
@@ -125,7 +131,7 @@ void TTetris::menuCloseCallback(Ref* pSender)
 // --------------------------------------------------
 TTetris::~TTetris() {
    
-  CC_SAFE_RELEASE_NULL(m_Background);
-  CC_SAFE_RELEASE_NULL(this->m_Piece);
+  CC_SAFE_RELEASE_NULL(_background);
+  CC_SAFE_RELEASE_NULL(_layer);
   return;
 }

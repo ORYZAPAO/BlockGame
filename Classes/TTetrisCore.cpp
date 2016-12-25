@@ -3,7 +3,7 @@
 
 #include"TTetrisCore.h"
 
-using namespace PrityTetris;
+using namespace PrettyTetris;
 
 /* --------------------------------------------------
  *

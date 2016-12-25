@@ -2,33 +2,32 @@
 #ifndef __TTETRISCTRL_H
 #define __TTETRISCTRL_H
 
-#include  "TTetrisScene.h"
+#include "cocos2d.h"
 #include "TTetrisCore.h"
 
-namespace PrityTetris{
-
-  USING_NS_CC;
-
+namespace PrettyTetris{
   
+//USING_NS_CC
+
 class TCtrl{
 private:
-  class TCore *_ptcore;
-  class Layer *_layer;
 
 public: 
-  TCtrl():_ptcore(nullptr), _layer(nullptr){}
-  TCtrl(TCore *pt, Layer *pl) :_ptcore(pt),_layer(pl) {}
-  ~TCtrl(){}
-
-  Sprite *_piece;
+  TCtrl(): _layer(nullptr){}
+  TCtrl(cocos2d::Layer *pl);
+  ~TCtrl();
   
+  TCore      _tcore;
+
+  CC_SYNTHESIZE_RETAIN(cocos2d::Layer*, _layer, Layer);
+  CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, _piece, Piece);
+
   void Init();
   void Draw();
 };
 
 
 }; /// namespace PretyTetris{
-
 
 #endif /// #ifndef __TTETRISCTRL_H
 

@@ -1,7 +1,9 @@
+#pragma once
 #ifndef __TTetris_SCENE_H__
 #define __TTetris_SCENE_H__
 
 #include "cocos2d.h"
+#include "TTetrisCtrl.h"
 
 class TTetris : public cocos2d::Layer
 {
@@ -17,11 +19,12 @@ public:
     CREATE_FUNC(TTetris);
 
     // Sprite Data
-    CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, m_Background, Background);
-    CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, m_Piece, Piece);
+    CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, _background, Background);
+    CC_SYNTHESIZE_RETAIN(cocos2d::Layer*,  _layer, Layer);
 
+    // Pretty Tetris 
+    PrettyTetris::TCtrl   _tctrl;
 
-    //
    ~TTetris();
 };
 
