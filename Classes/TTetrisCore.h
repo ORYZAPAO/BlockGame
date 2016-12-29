@@ -194,8 +194,6 @@ public:
     void         PutBlock(Block blk,  const int posx, const int posy);
     bool         IsRemovingBlock();
     
-
-
     std::vector< std::vector<int> > *GetMatrics(){ return &m_Matrix; }
 
   };
