@@ -187,11 +187,15 @@ public:
     ~TCore() {}
 
     void         Resize(const int x, const int y);
+    int          GetWidth(){return m_Width;}
+    int          GetHeight() { return m_Height; }
     const char** GetBlockData(Block &blk);
     bool         IsCollision(Block blk, const int x, const int y);
     void         PutBlock(Block blk,  const int posx, const int posy);
     bool         IsRemovingBlock();
     
+
+
     std::vector< std::vector<int> > *GetMatrics(){ return &m_Matrix; }
 
   };
