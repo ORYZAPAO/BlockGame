@@ -1,5 +1,8 @@
 #include"TTetrisCtrl.h"
 
+#include<iostream>
+#include<boost/format.hpp>
+
 using namespace PrettyTetris;
 USING_NS_CC;
 
@@ -7,26 +10,49 @@ TCtrl::TCtrl(cocos2d::Layer *pl) {
  //Init();
 }
 
-TCtrl::~TCtrl() {
-  CC_SAFE_RELEASE_NULL(_piece);
-}
-
 /*
  *
  */
  void TCtrl::Init(){
   auto visibleSize = Director::getInstance()->getVisibleSize();
-  Vec2 origin = Director::getInstance()->getVisibleOrigin();
+  Vec2 origin      = Director::getInstance()->getVisibleOrigin();
   ///setPiece(Sprite::create("Piece.png"));
+  
 
-  setPiece(Sprite::create("Piece.png"));
-  _piece->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+  /// Generate Matrix
+  for(int x=0; x<_tcore.GetWidth(); x++){
+    for(int y=0; y<_tcore.GetHeight(); y++){
+      _piece[x][y] = Sprite::create("Piece.png");
+      _piece[x][y]->setPosition(  Vec2( (visibleSize.width /2 + (16 * x) + origin.x), 
+                                        (/*visibleSize.height/2 +*/ (16 * y) + origin.y  +16*2) ) );
 
-  // Draw Piece
-  _layer->addChild(_piece);
+      std::cout << boost::format("%d, %d") %  (visibleSize.width / 2 + (16 * x) + origin.x) % ((16 * (y + 1)) + origin.y) << std::endl;
 
+      _layer->addChild(_piece[x][y]); 
+    }
+  }
+
+  //
+  _piece[0][0]->setVisible(false);
 }
 
+
+ TCtrl::~TCtrl() {
+   /// Clear Matricx
+   for (int x = 0; x<_tcore.GetWidth(); x++) {
+     for (int y = 0; y<_tcore.GetHeight(); y++) {
+       CC_SAFE_RELEASE_NULL(_piece[x][y]);
+     }
+   }
+
+ }
+
+
+
+
+/*
+ *
+ */
 void TCtrl::Draw(){
 
 }

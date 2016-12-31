@@ -10,7 +10,7 @@ using namespace PrettyTetris;
  * ------------------------------------------------ */
  void TCore::Resize(const int x, const int y) {
    m_Width = x; 
-   m_Width = y;
+   m_Height = y;
 
    // Resize(x,y)
    m_Matrix.resize(m_Width);  m_BackMatrix.resize(m_Width);
@@ -49,6 +49,7 @@ const char** TCore::GetBlockData(Block &blk){
   
   return p;
 }
+
 
 /* --------------------------------------------------
  * Judge Collision

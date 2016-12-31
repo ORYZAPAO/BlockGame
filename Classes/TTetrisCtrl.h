@@ -5,9 +5,9 @@
 #include "cocos2d.h"
 #include "TTetrisCore.h"
 
+USING_NS_CC;
+
 namespace PrettyTetris{
-  
-//USING_NS_CC
 
 class TCtrl{
 private:
@@ -18,10 +18,11 @@ public:
   ~TCtrl();
   
   TCore      _tcore;
-
+  Sprite    *_piece[10][20];    /// !!! KARI !!!
+  
   CC_SYNTHESIZE_RETAIN(cocos2d::Layer*, _layer, Layer);
-  CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, _piece, Piece);
-
+  ///CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, _piece, Piece);
+    
   void Init();
   void Draw();
 };
