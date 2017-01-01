@@ -177,8 +177,9 @@ namespace PrettyTetris{
 
    const int PartsSizeX=5, PartsSizeY=5;
   
-   std::vector< std::vector<int> >  m_Matrix;
-   std::vector< std::vector<int> >  m_BackMatrix;
+public:
+  std::vector< std::vector<bool> >  m_Matrix;
+   std::vector< std::vector<bool> >  m_BackMatrix;
 
 public:
     TCore(const int x=10, const int y=20):m_Width(x), m_Height(y){
@@ -194,7 +195,7 @@ public:
     void         PutBlock(Block blk,  const int posx, const int posy);
     bool         IsRemovingBlock();
     
-    std::vector< std::vector<int> > *GetMatrics(){ return &m_Matrix; }
+    ///std::vector< std::vector<bool> > *GetMatrics(){ return &m_Matrix; }
 
   };
 
