@@ -16,6 +16,8 @@ public:
   TCtrl(): _layer(nullptr){}
   TCtrl(cocos2d::Layer *pl);
   ~TCtrl();
+
+  enum {wait, play} _gamestatus;
   
   TCore      _tcore;
   Sprite    *_piece[10][20];    /// !!! KARI !!!
@@ -25,6 +27,7 @@ public:
     
   void Init();
   void Draw();
+  void NextStep();
 };
 
 

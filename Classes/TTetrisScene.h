@@ -15,6 +15,8 @@ public:
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
+    void update(float dt);
+
     // implement the "static create()" method manually
     CREATE_FUNC(TTetrisScene);
 

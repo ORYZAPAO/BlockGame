@@ -102,12 +102,23 @@ bool TTetrisScene::init()
     _tctrl.setLayer(layer);
     _tctrl.Init();
 
+    // Update Method
+    this->scheduleUpdate();
+
     ///layer->addChild(this->getPiece(), 0);
-      
-
-    
-
     return true;
+}
+
+
+// --------------------------------------------------
+// --------------------------------------------------
+void TTetrisScene::update(float delta) {
+  static float sum = 0;
+
+  if ( (sum += delta) > 1.0){
+    _tctrl.NextStep();
+    sum=0;
+  }
 }
 
 
