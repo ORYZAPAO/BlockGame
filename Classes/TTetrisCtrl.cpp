@@ -22,9 +22,12 @@ TCtrl::TCtrl(cocos2d::Layer *pl) {
   /// Generate Matrix
   for(int x=0; x<_tcore.GetWidth(); x++){
     for(int y=0; y<_tcore.GetHeight(); y++){
-      _piece[x][y] = Sprite::create("Piece.png");
+       const int space = 16 * 2;
+
+      _piece[x][y] = Sprite::create("Piece.png"); /// Picture Size is 16pixel.
       _piece[x][y]->setPosition(  Vec2( (visibleSize.width /2 + (16 * x) + origin.x), 
-                                        (/*visibleSize.height/2 +*/ (16 * y) + origin.y  +16*2) ) );
+                                        (                       (16 * (_tcore.GetHeight() - y)) + origin.y  + space) ) );
+      _piece[x][y]->setVisible(false);
 
       std::cout << boost::format("%d, %d") %  (visibleSize.width / 2 + (16 * x) + origin.x) % ((16 * (y + 1)) + origin.y) << std::endl;
 
@@ -33,9 +36,9 @@ TCtrl::TCtrl(cocos2d::Layer *pl) {
   }
 
   //
-  _piece[0][0]->setVisible(false);
+  ///_piece[0][0]->setVisible(false);
 }
-
+ 
 
  TCtrl::~TCtrl() {
    /// Clear Matricx
