@@ -10,13 +10,13 @@ USING_NS_CC;
 // Scene* TTetris::createScene()
 //
 // --------------------------------------------------
-Scene* TTetris::createScene()
+Scene* TTetrisScene::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-    auto layer = TTetris::create();
+    auto layer = TTetrisScene::create();
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -30,7 +30,7 @@ Scene* TTetris::createScene()
 //
 // on "init" you need to initialize your instance
 // --------------------------------------------------
-bool TTetris::init()
+bool TTetrisScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -50,7 +50,7 @@ bool TTetris::init()
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
-                                           CC_CALLBACK_1(TTetris::menuCloseCallback, this));
+                                           CC_CALLBACK_1(TTetrisScene::menuCloseCallback, this));
     
     closeItem->setPosition(Vec2(origin.x + visibleSize.width -closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
@@ -113,7 +113,7 @@ bool TTetris::init()
 
 // --------------------------------------------------
 // --------------------------------------------------
-void TTetris::menuCloseCallback(Ref* pSender)
+void TTetrisScene::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
@@ -130,7 +130,7 @@ void TTetris::menuCloseCallback(Ref* pSender)
 
 // --------------------------------------------------
 // --------------------------------------------------
-TTetris::~TTetris() {
+TTetrisScene::~TTetrisScene() {
    
   CC_SAFE_RELEASE_NULL(_background);
   CC_SAFE_RELEASE_NULL(_layer);

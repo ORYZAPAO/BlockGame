@@ -5,7 +5,7 @@
 #include "cocos2d.h"
 #include "TTetrisCtrl.h"
 
-class TTetris : public cocos2d::Layer
+class TTetrisScene : public cocos2d::Layer
 {
 public:
     static cocos2d::Scene* createScene();
@@ -16,7 +16,7 @@ public:
     void menuCloseCallback(cocos2d::Ref* pSender);
     
     // implement the "static create()" method manually
-    CREATE_FUNC(TTetris);
+    CREATE_FUNC(TTetrisScene);
 
     // Sprite Data
     CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, _background, Background);
@@ -25,7 +25,7 @@ public:
     // Pretty Tetris 
     PrettyTetris::TCtrl   _tctrl;
 
-   ~TTetris();
+   ~TTetrisScene();
 };
 
 #endif // __TTetris_SCENE_H__

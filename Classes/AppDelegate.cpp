@@ -76,7 +76,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = TTetris::createScene();
+    auto scene = TTetrisScene::createScene();
 
     // run
     director->runWithScene(scene);
