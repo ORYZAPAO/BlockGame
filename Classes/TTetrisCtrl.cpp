@@ -10,8 +10,8 @@ TCtrl::TCtrl(cocos2d::Layer *pl) {
  //Init();
 }
 
- // --------------------------------------------------
- // --------------------------------------------------
+// --------------------------------------------------
+// --------------------------------------------------
 void TCtrl::Init(){
   auto visibleSize = Director::getInstance()->getVisibleSize();
   Vec2 origin      = Director::getInstance()->getVisibleOrigin();
@@ -34,17 +34,14 @@ void TCtrl::Init(){
   }
 
   //
-  ///_piece[0][0]->setVisible(false);
+  //_piece[0][0]->setVisible(false);
 }
  
 
- // --------------------------------------------------
- // --------------------------------------------------
+// --------------------------------------------------
+// --------------------------------------------------
  void TCtrl::NextStep(){
-   static int ct=0;
-
-   _piece[0][ct++]->setVisible(false);
-    Draw();
+     Draw();
 }
 
 
@@ -60,12 +57,21 @@ void TCtrl::Init(){
 
  }
 
-
-
-
+ 
 // --------------------------------------------------
 // --------------------------------------------------
  void TCtrl::Draw(){
+   //static int ct = 0;
+   //_piece[0][ct++]->setVisible(false);
+
+   _tcore.PutBlock(_tcore.Parts::L, 2,10);
+
+   for (int x = 0; x<_tcore.GetWidth(); x++) {
+     for (int y = 0; y<_tcore.GetHeight(); y++) {
+        if( _tcore.m_Matrix[x][y] ) _piece[x][y]->setVisible(true);
+        else                        _piece[x][y]->setVisible(false);
+     }
+   }
 
 }
 
