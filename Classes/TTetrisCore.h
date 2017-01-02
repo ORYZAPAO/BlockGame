@@ -12,17 +12,17 @@ namespace PrettyTetris{
   //
   class Block{
   public:
-    Parts _Number;
-    int   _SubNum;
+    Parts _number;
+    int   _subNum;
   
-    Block(Parts Num=Parts::Bar, int subNum=0):_Number(Num), _SubNum(subNum){}
+    Block(Parts Num=Parts::Bar, int subNum=0):_number(Num), _subNum(subNum){}
   };
   
   
   //
   class TCore {
   
-    const char *m_Pat_Bar[20]={
+    const char *_blkPatten_Bar[20]={
     "..0..",
     "..0..",
     "..0..",
@@ -47,7 +47,7 @@ namespace PrettyTetris{
     ".....",
     "....."  };
 
-  const char *m_Pat_L[20] = {
+  const char *_blkPatten_L[20] = {
     ".....",
     "..0..",
     "..0..",
@@ -72,7 +72,7 @@ namespace PrettyTetris{
     ".0...",
     "....." };
 
-  const char *m_Pat_RevL[20] = {
+  const char *_blkPatten_RevL[20] = {
     ".....",
     "..0..",
     "..0..",
@@ -97,7 +97,7 @@ namespace PrettyTetris{
     ".....",
     "....."  };
 
-  const char *m_Pat_Z[20] = {
+  const char *_blkPatten_Z[20] = {
     ".....",
     ".00..",
     "..00.",
@@ -122,7 +122,7 @@ namespace PrettyTetris{
     "..0..",
     "....." };
 
-  const char *m_Pat_RevZ[20] = {
+  const char *_blkPatten_RevZ[20] = {
     ".....",
     "..00.",
     ".00..",
@@ -147,7 +147,7 @@ namespace PrettyTetris{
     "...0.",
     "....." };
 
-  const char *m_Pat_Totsu[20] = {
+  const char *_blkPatten_Totsu[20] = {
     ".....",
     "..0..",
     ".000.",
@@ -172,30 +172,30 @@ namespace PrettyTetris{
     "..0..",
     "....."  };
 
-   int m_Width;
-   int m_Height;
+   int _width;
+   int _height;
 
    const int PartsSizeX=5, PartsSizeY=5;
   
 public:
-  std::vector< std::vector<bool> >  m_Matrix;
-   std::vector< std::vector<bool> >  m_BackMatrix;
+   std::vector< std::vector<bool> >  _matrix;
+   std::vector< std::vector<bool> >  _backMatrix;
 
 public:
-    TCore(const int x=10, const int y=20):m_Width(x), m_Height(y){
+    TCore(const int x=10, const int y=20):_width(x), _height(y){
       Resize(x,y);
     }
     ~TCore() {}
 
     void         Resize(const int x, const int y);
-    int          GetWidth() { return m_Width;  }
-    int          GetHeight(){ return m_Height; }
+    int          GetWidth() { return _width;  }
+    int          GetHeight(){ return _height; }
     const char** GetBlockData(Block &blk);
     bool         IsCollision(Block blk, const int x, const int y);
     void         PutBlock(Block blk,  const int posx, const int posy);
     bool         IsRemovingBlock();
     
-    ///std::vector< std::vector<bool> > *GetMatrics(){ return &m_Matrix; }
+    ///std::vector< std::vector<bool> > *GetMatrics(){ return &_matrix; }
 
   };
 

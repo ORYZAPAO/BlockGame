@@ -9,19 +9,19 @@ using namespace PrettyTetris;
  *
  * ------------------------------------------------ */
  void TCore::Resize(const int x, const int y) {
-   m_Width = x; 
-   m_Height = y;
+   _width = x; 
+   _height = y;
 
    // Resize(x,y)
-   m_Matrix.resize(m_Width);  m_BackMatrix.resize(m_Width);
-   for (int i=0; i<m_Width; i++) {
-     m_Matrix[i].resize(m_Height);  m_BackMatrix[i].resize(m_Height);
+   _matrix.resize(_width);  _backMatrix.resize(_width);
+   for (int i=0; i<_width; i++) {
+     _matrix[i].resize(_height);  _backMatrix[i].resize(_height);
    }
 
    // Initialize
-   for (int xx = 0; xx<m_Width; xx++) {
-     for (int yy = 0; yy<m_Height; yy++) {
-         m_Matrix[xx][yy] = false;  m_BackMatrix[xx][yy] = false;
+   for (int xx = 0; xx<_width; xx++) {
+     for (int yy = 0; yy<_height; yy++) {
+         _matrix[xx][yy] = false;  _backMatrix[xx][yy] = false;
      }
    }
 }
@@ -35,17 +35,17 @@ const char** TCore::GetBlockData(Block &blk){
   const char **p;
   
   /// Select Parts
-  if     ( blk._Number == Parts::Bar   ) p = m_Pat_Bar;
-  else if( blk._Number == Parts::L     ) p = m_Pat_L;
-  else if( blk._Number == Parts::RevL  ) p = m_Pat_RevL;
-  else if( blk._Number == Parts::Z     ) p = m_Pat_Z;
-  else if( blk._Number == Parts::RevZ  ) p = m_Pat_RevZ;
-  else if( blk._Number == Parts::Totsu ) p = m_Pat_Totsu;
+  if     ( blk._number == Parts::Bar   ) p = _blkPatten_Bar;
+  else if( blk._number == Parts::L     ) p = _blkPatten_L;
+  else if( blk._number == Parts::RevL  ) p = _blkPatten_RevL;
+  else if( blk._number == Parts::Z     ) p = _blkPatten_Z;
+  else if( blk._number == Parts::RevZ  ) p = _blkPatten_RevZ;
+  else if( blk._number == Parts::Totsu ) p = _blkPatten_Totsu;
   else  p = nullptr;
   assert( p != nullptr);
   
   /// Select PartsSubType
-  p += ( PartsSizeY * blk._SubNum );
+  p += ( PartsSizeY * blk._subNum );
   
   return p;
 }
@@ -62,17 +62,17 @@ bool TCore::IsCollision(Block blk, const int posx, const int posy){
   // Block
   p = GetBlockData(blk);
    
-  // Judge Collision
+  //
   retcode = false;
   for (int xx = 0; xx<PartsSizeX; xx++) {
     for (int yy =0; yy<PartsSizeY; yy++) {
-      // Check Over
-      if( p[xx][yy] == '0' ){
-        if( ((posx+xx) >= m_Width ) ||
-            ((posy+yy) >= m_Height) ){ goto END; }
+      // Check Out ofrange
+      if( ((posx+xx) >= _width ) ||
+          ((posy+yy) >= _height) ){ goto END; }
        
-        // Judge Collision
-        if( m_Matrix[posx+xx][posy+yy] == true ){ goto END;}
+      // Judge Collision
+      if (p[xx][yy] == '0') {
+        if( _matrix[posx+xx][posy+yy] == true ){ goto END;}
       }
     }
   }
@@ -96,13 +96,13 @@ void TCore::PutBlock(Block blk, const int posx, const int posy){
   const char **p = GetBlockData(blk);
 
   for(int xx=0; xx<PartsSizeX; xx++){
-    if( (posx+xx) >= m_Width ) continue;
+    if( (posx+xx) >= _width ) continue;
     
     for(int yy=0; yy<PartsSizeY; yy++){
-      if( (posy+yy) >= m_Height ) continue;
+      if( (posy+yy) >= _height ) continue;
 
       if( p[xx][yy] == '0' ){
-        m_Matrix[xx+posx][yy+posy] = true;
+        _matrix[xx+posx][yy+posy] = true;
       }
     }
   }

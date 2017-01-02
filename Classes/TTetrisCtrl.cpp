@@ -68,7 +68,7 @@ void TCtrl::Init(){
 
    for (int x = 0; x<_tcore.GetWidth(); x++) {
      for (int y = 0; y<_tcore.GetHeight(); y++) {
-        if( _tcore.m_Matrix[x][y] ) _piece[x][y]->setVisible(true);
+        if( _tcore._matrix[x][y] ) _piece[x][y]->setVisible(true);
         else                        _piece[x][y]->setVisible(false);
      }
    }

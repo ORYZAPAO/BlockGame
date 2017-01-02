@@ -17,7 +17,7 @@ public:
   TCtrl(cocos2d::Layer *pl);
   ~TCtrl();
 
-  enum {wait, play} _gamestatus;
+  enum GAMESTATUS  {wait, play}  _gamestatus= GAMESTATUS::wait;
   
   TCore      _tcore;
   Sprite    *_piece[10][20];    /// !!! KARI !!!
