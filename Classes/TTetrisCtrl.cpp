@@ -1,7 +1,7 @@
 #include"TTetrisCtrl.h"
 
 #include<iostream>
-#include<boost/format.hpp>
+//#include<boost/format.hpp>
 
 using namespace PrettyTetris;
 USING_NS_CC;
@@ -27,7 +27,7 @@ void TCtrl::Init(){
       _piece[x][y]->setPosition(  Vec2( (visibleSize.width /2 + (16 * x) + origin.x), 
                                         (                       (16 * (_tcore.GetHeight() - y)) + origin.y  + space) ) );
       ///_piece[x][y]->setVisible(false);
-      std::cout << boost::format("%d, %d") %  (visibleSize.width / 2 + (16 * x) + origin.x) % ((16 * (y + 1)) + origin.y) << std::endl;
+      //std::cout << boost::format("%d, %d") %  (visibleSize.width / 2 + (16 * x) + origin.x) % ((16 * (y + 1)) + origin.y) << std::endl;
 
       _layer->addChild(_piece[x][y]); 
     }
@@ -64,12 +64,13 @@ void TCtrl::Init(){
    //static int ct = 0;
    //_piece[0][ct++]->setVisible(false);
 
-   _tcore.PutBlock(_tcore.Parts::L, 2,10);
+   Block blk(Parts::L,0);
+   _tcore.PutBlock(blk, 0,10);
 
    for (int x = 0; x<_tcore.GetWidth(); x++) {
      for (int y = 0; y<_tcore.GetHeight(); y++) {
         if( _tcore._matrix[x][y] ) _piece[x][y]->setVisible(true);
-        else                        _piece[x][y]->setVisible(false);
+        else                       _piece[x][y]->setVisible(false);
      }
    }
 
