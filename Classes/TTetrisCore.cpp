@@ -45,7 +45,7 @@ const char** TCore::GetBlockData(Block &blk){
   assert( p != nullptr);
   
   /// Select PartsSubType
-  p += ( PartsSizeY * blk._subNum );
+  *p += ( PatSizeY * blk._subNum );
   
   return p;
 }
@@ -55,7 +55,7 @@ const char** TCore::GetBlockData(Block &blk){
  * Judge Collision
  *
  * ------------------------------------------------ */
-bool TCore::IsCollision(Block blk, const int posx, const int posy){
+bool TCore::IsCollision(Block &blk, const int posx, const int posy){
   const char **p;
   bool retcode;
    
@@ -64,8 +64,8 @@ bool TCore::IsCollision(Block blk, const int posx, const int posy){
    
   //
   retcode = false;
-  for (int xx = 0; xx<PartsSizeX; xx++) {
-    for (int yy =0; yy<PartsSizeY; yy++) {
+  for (int xx = 0; xx<PatSizeX; xx++) {
+    for (int yy =0; yy<PatSizeY; yy++) {
       // Check Out ofrange
       if( ((posx+xx) >= _width ) ||
           ((posy+yy) >= _height) ){ goto END; }
@@ -89,16 +89,16 @@ bool TCore::IsCollision(Block blk, const int posx, const int posy){
  *
  * Write Block Image in Matrix
  * ------------------------------------------------ */
-void TCore::PutBlock(Block blk, const int posx, const int posy){
-  
+void TCore::PutBlock(Block &blk, const int posx, const int posy){
+
   if( !IsCollision(blk, posx, posy) ) return;
 
   const char **p = GetBlockData(blk);
 
-  for(int xx=0; xx<PartsSizeX; xx++){
+  for(int xx=0; xx<PatSizeX; xx++){
     if( (posx+xx) >= _width ) continue;
     
-    for(int yy=0; yy<PartsSizeY; yy++){
+    for(int yy=0; yy<PatSizeY; yy++){
       if( (posy+yy) >= _height ) continue;
 
       if( p[xx][yy] == '0' ){

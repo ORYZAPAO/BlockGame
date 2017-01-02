@@ -175,7 +175,7 @@ namespace PrettyTetris{
    int _width;
    int _height;
 
-   const int PartsSizeX=5, PartsSizeY=5;
+   const int PatSizeX=5, PatSizeY=5;
   
 public:
    std::vector< std::vector<bool> >  _matrix;
@@ -191,8 +191,8 @@ public:
     int          GetWidth() { return _width;  }
     int          GetHeight(){ return _height; }
     const char** GetBlockData(Block &blk);
-    bool         IsCollision(Block blk, const int x, const int y);
-    void         PutBlock(Block blk,  const int posx, const int posy);
+    bool         IsCollision(Block &blk, const int x, const int y);
+    void         PutBlock(Block &blk, const int posx, const int posy);
     bool         IsRemovingBlock();
     
     ///std::vector< std::vector<bool> > *GetMatrics(){ return &_matrix; }
