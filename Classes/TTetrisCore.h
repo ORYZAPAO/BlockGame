@@ -164,7 +164,7 @@ namespace PrettyTetris{
     ".....",
     ".000.",
     "..0..",
-    ".....",
+    ".....", 
 
     ".....",
     "..0..",
@@ -179,7 +179,6 @@ namespace PrettyTetris{
   
 public:
    std::vector< std::vector<bool> >  _matrix;
-   std::vector< std::vector<bool> >  _backMatrix;
 
 public:
     TCore(const int x=10, const int y=20):_width(x), _height(y){

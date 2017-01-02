@@ -1,7 +1,7 @@
 #include"TTetrisCtrl.h"
 
 #include<iostream>
-//#include<boost/format.hpp>
+#include<boost/format.hpp>
 
 using namespace PrettyTetris;
 USING_NS_CC;
@@ -18,7 +18,7 @@ void TCtrl::Init(){
   ///setPiece(Sprite::create("Piece.png"));
   
 
-  /// Generate Matrix
+  /// Generate Matrix, Sprite Table
   for(int x=0; x<_tcore.GetWidth(); x++){
     for(int y=0; y<_tcore.GetHeight(); y++){
        const int space = 16 * 2;
@@ -26,8 +26,8 @@ void TCtrl::Init(){
       _piece[x][y] = Sprite::create("Piece.png"); /// Picture Size is 16pixel.
       _piece[x][y]->setPosition(  Vec2( (visibleSize.width /2 + (16 * x) + origin.x), 
                                         (                       (16 * (_tcore.GetHeight() - y)) + origin.y  + space) ) );
-      ///_piece[x][y]->setVisible(false);
-      //std::cout << boost::format("%d, %d") %  (visibleSize.width / 2 + (16 * x) + origin.x) % ((16 * (y + 1)) + origin.y) << std::endl;
+      //_piece[x][y]->setVisible(false);
+      std::cout << boost::format("%d, %d") %  (visibleSize.width / 2 + (16 * x) + origin.x) % ((16 * (y + 1)) + origin.y) << std::endl;
 
       _layer->addChild(_piece[x][y]); 
     }
@@ -61,11 +61,11 @@ void TCtrl::Init(){
 // --------------------------------------------------
 // --------------------------------------------------
  void TCtrl::Draw(){
-   //static int ct = 0;
+   static int pt = 0;
    //_piece[0][ct++]->setVisible(false);
 
-   Block blk(Parts::L,0);
-   _tcore.PutBlock(blk, 0,10);
+   Block blk(Parts::L,1);
+   _tcore.PutBlock(blk, 0, pt++);
 
    for (int x = 0; x<_tcore.GetWidth(); x++) {
      for (int y = 0; y<_tcore.GetHeight(); y++) {

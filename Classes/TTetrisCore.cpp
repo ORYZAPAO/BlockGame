@@ -13,15 +13,15 @@ using namespace PrettyTetris;
    _height = y;
 
    // Resize(x,y)
-   _matrix.resize(_width);  _backMatrix.resize(_width);
-   for (int i=0; i<_width; i++) {
-     _matrix[i].resize(_height);  _backMatrix[i].resize(_height);
+   _matrix.resize(_width); 
+   for (int xx=0; xx<_width; xx++) {
+     _matrix[xx].resize(_height);  
    }
 
    // Initialize
    for (int xx = 0; xx<_width; xx++) {
      for (int yy = 0; yy<_height; yy++) {
-         _matrix[xx][yy] = false;  _backMatrix[xx][yy] = false;
+         _matrix[xx][yy] = false;  
      }
    }
 }
@@ -45,7 +45,7 @@ const char** TCore::GetBlockData(Block &blk){
   assert( p != nullptr);
   
   /// Select PartsSubType
-  *p += ( PatSizeY * blk._subNum );
+  p += ( PatSizeY * blk._subNum );
   
   return p;
 }
@@ -71,7 +71,7 @@ bool TCore::IsCollision(Block &blk, const int posx, const int posy){
           ((posy+yy) >= _height) ){ goto END; }
        
       // Judge Collision
-      if (p[xx][yy] == '0') {
+      if (p[yy][xx] == '0') {
         if( _matrix[posx+xx][posy+yy] == true ){ goto END;}
       }
     }
@@ -101,7 +101,7 @@ void TCore::PutBlock(Block &blk, const int posx, const int posy){
     for(int yy=0; yy<PatSizeY; yy++){
       if( (posy+yy) >= _height ) continue;
 
-      if( p[xx][yy] == '0' ){
+      if( p[yy][xx] == '0' ){
         _matrix[xx+posx][yy+posy] = true;
       }
     }
