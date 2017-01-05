@@ -172,13 +172,14 @@ namespace PrettyTetris{
     "..0..",
     "....."  };
 
-   int _width;
-   int _height;
+   int       _width;
+   int       _height;
 
    const int PatSizeX=5, PatSizeY=5;
   
 public:
-   std::vector< std::vector<bool> >  _matrix;
+   std::vector< std::vector<bool> >  _matrix0;
+   std::vector< std::vector<bool> >  _matrix1;
 
 public:
     TCore(const int x=10, const int y=20):_width(x), _height(y){
@@ -187,14 +188,15 @@ public:
     ~TCore() {}
 
     void         Resize(const int x, const int y);
+    void         Initialize(bool surface);
     int          GetWidth() { return _width;  }
     int          GetHeight(){ return _height; }
-    const char** GetBlockData(Block &blk);
+    const char** GetBlockImage(Block &blk);
     bool         IsCollision(Block &blk, const int x, const int y);
-    void         PutBlock(Block &blk, const int posx, const int posy);
+    void         PutBlock(Block &blk, const int posx, const int posy, bool  surface);
     bool         IsRemovingBlock();
     
-    ///std::vector< std::vector<bool> > *GetMatrics(){ return &_matrix; }
+    ///std::vector< std::vector<bool> > *GetMatrics(){ return &_matrix0; }
 
   };
 

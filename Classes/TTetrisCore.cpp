@@ -5,33 +5,45 @@
 
 using namespace PrettyTetris;
 
-/* --------------------------------------------------
- *
- * ------------------------------------------------ */
+
+// --------------------------------------------------
+// --------------------------------------------------
+void TCore::Initialize(bool surface){
+  // Initialize
+  for (int xx = 0; xx<_width; xx++) {
+    for (int yy = 0; yy<_height; yy++) {
+      if( surface )  _matrix0[xx][yy] = false;  
+      else           _matrix1[xx][yy] = false;
+    }
+  }
+
+}
+
+// --------------------------------------------------
+// --------------------------------------------------
  void TCore::Resize(const int x, const int y) {
    _width = x; 
    _height = y;
 
    // Resize(x,y)
-   _matrix.resize(_width); 
+   _matrix0.resize(_width);   _matrix1.resize(_width);
+
+   //
    for (int xx=0; xx<_width; xx++) {
-     _matrix[xx].resize(_height);  
+     _matrix0[xx].resize(_height);  _matrix1[xx].resize(_height);
    }
 
    // Initialize
-   for (int xx = 0; xx<_width; xx++) {
-     for (int yy = 0; yy<_height; yy++) {
-         _matrix[xx][yy] = false;  
-     }
-   }
+   Initialize(true);  Initialize(false);
 }
 
 
-/* --------------------------------------------------
- * Get Block Data Pointer
- *
- * ------------------------------------------------ */
-const char** TCore::GetBlockData(Block &blk){
+
+
+ // --------------------------------------------------
+ // Get Block Data Pointer
+ // --------------------------------------------------
+const char** TCore::GetBlockImage(Block &blk){
   const char **p;
   
   /// Select Parts
@@ -60,7 +72,7 @@ bool TCore::IsCollision(Block &blk, const int posx, const int posy){
   bool retcode;
    
   // Block
-  p = GetBlockData(blk);
+  p = GetBlockImage(blk);
    
   //
   retcode = false;
@@ -72,7 +84,7 @@ bool TCore::IsCollision(Block &blk, const int posx, const int posy){
        
       // Judge Collision
       if (p[yy][xx] == '0') {
-        if( _matrix[posx+xx][posy+yy] == true ){ goto END;}
+        if( _matrix0[posx+xx][posy+yy] == true ){ goto END;}
       }
     }
   }
@@ -84,25 +96,29 @@ bool TCore::IsCollision(Block &blk, const int posx, const int posy){
 }
 
 
+
 /* --------------------------------------------------
  * Put Block
  *
  * Write Block Image in Matrix
  * ------------------------------------------------ */
-void TCore::PutBlock(Block &blk, const int posx, const int posy){
+void TCore::PutBlock(Block &blk, 
+                     const int posx, const int posy,
+                     bool      surface){ // surface=0:, 1:
 
   if( !IsCollision(blk, posx, posy) ) return;
 
-  const char **p = GetBlockData(blk);
+  const char **p = GetBlockImage(blk);
 
   for(int xx=0; xx<PatSizeX; xx++){
     if( (posx+xx) >= _width ) continue;
-    
+
     for(int yy=0; yy<PatSizeY; yy++){
       if( (posy+yy) >= _height ) continue;
 
       if( p[yy][xx] == '0' ){
-        _matrix[xx+posx][yy+posy] = true;
+        if( surface ) _matrix0[xx+posx][yy+posy] = true;
+        else          _matrix1[xx+posx][yy+posy] = true;
       }
     }
   }
