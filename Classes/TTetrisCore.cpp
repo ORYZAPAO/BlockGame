@@ -10,9 +10,22 @@ using namespace PrettyTetris;
 // --------------------------------------------------
 void TCore::Initialize(bool surface){
   // Initialize
+
+
+  /// ブロックで敷き詰める
   for (int xx = 0; xx<_width; xx++) {
     for (int yy = 0; yy<_height; yy++) {
-      if( surface )  _matrix0[xx][yy] = false;  
+
+      if (surface)  _matrix0[xx][yy] = true;
+      else          _matrix1[xx][yy] = true;
+    }
+  }
+
+  /// ブロックを取り除く．
+  for (int xx = 2; xx<(_width-2); xx++) {
+    for (int yy = 0; yy<(_height-2); yy++) {
+
+      if( surface )  _matrix0[xx][yy] = false;
       else           _matrix1[xx][yy] = false;
     }
   }
@@ -68,14 +81,13 @@ const char** TCore::GetBlockImage(Block &blk){
  *
  * ------------------------------------------------ */
 bool TCore::IsCollision(Block &blk, const int posx, const int posy){
-  const char **p;
-  bool retcode;
+  const char  **p;
+  bool          retcode=true;
    
   // Block
   p = GetBlockImage(blk);
    
   //
-  retcode = false;
   for (int xx = 0; xx<PatSizeX; xx++) {
     for (int yy =0; yy<PatSizeY; yy++) {
       // Check Out ofrange
@@ -88,7 +100,7 @@ bool TCore::IsCollision(Block &blk, const int posx, const int posy){
       }
     }
   }
-  retcode = true;
+  retcode = false;
 
   //
  END:
@@ -96,35 +108,48 @@ bool TCore::IsCollision(Block &blk, const int posx, const int posy){
 }
 
 
-
 /* --------------------------------------------------
  * Put Block
  *
  * Write Block Image in Matrix
  * ------------------------------------------------ */
-void TCore::PutBlock(Block &blk, 
-                     const int posx, const int posy,
-                     bool      surface){ // surface=0:, 1:
+bool TCore::PutBlock(Block &blk,
+  int &posx, int &posy, /// Current Position
+  const int dx, const int dy,     /// incremental
+  bool      surface) { // surface=0:, 1:
 
-  if( !IsCollision(blk, posx, posy) ) return;
+  bool ret_code = false;
+
+  int next_posx = posx;
+  int next_posy = posy;
+
+  if ( IsCollision(blk, posx+dx, posy+dy) == false){
+    next_posx += dx;
+    next_posy += dy;
+    ret_code = true;
+  }
 
   const char **p = GetBlockImage(blk);
 
-  for(int xx=0; xx<PatSizeX; xx++){
-    if( (posx+xx) >= _width ) continue;
+  for (int xx = 0; xx<PatSizeX; xx++) {
+    if ((next_posx + xx) >= _width) continue;
 
-    for(int yy=0; yy<PatSizeY; yy++){
-      if( (posy+yy) >= _height ) continue;
+    for (int yy = 0; yy<PatSizeY; yy++) {
+      if ((next_posy + yy) >= _height) continue;
 
-      if( p[yy][xx] == '0' ){
-        if( surface ) _matrix0[xx+posx][yy+posy] = true;
-        else          _matrix1[xx+posx][yy+posy] = true;
+      if (p[yy][xx] == '0') {
+        if (surface) _matrix0[xx + next_posx][yy + next_posy] = true;
+        else         _matrix1[xx + next_posx][yy + next_posy] = true;
       }
     }
   }
 
+  //
+  posx = next_posx;
+  posy = next_posy;
+
 END:
-  return;
+  return(ret_code);
 }
 
 

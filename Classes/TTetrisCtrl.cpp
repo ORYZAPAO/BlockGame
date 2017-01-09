@@ -19,8 +19,8 @@ void TCtrl::Init(){
   
 
   /// Generate Matrix, Sprite Table
-  for(int x=0; x<_tcore.GetWidth(); x++){
-    for(int y=0; y<_tcore.GetHeight(); y++){
+  for(int x=0; x<(_tcore.GetWidth()- _offset_x - _offset_x); x++){
+    for(int y=0; y<(_tcore.GetHeight()- _offset_y - _offset_y); y++){
        const int space = 16 * 2;
 
       _piece[x][y] = Sprite::create("Piece.png"); /// Picture Size is 16pixel.
@@ -49,8 +49,8 @@ void TCtrl::Init(){
 // --------------------------------------------------
  TCtrl::~TCtrl() {
    /// Clear Matricx
-   for (int x = 0; x<_tcore.GetWidth(); x++) {
-     for (int y = 0; y<_tcore.GetHeight(); y++) {
+   for (int x = 0; x<(_tcore.GetWidth() - _offset_x - _offset_x); x++) {
+     for (int y = 0; y<(_tcore.GetHeight() - _offset_y - _offset_y); y++) {
        CC_SAFE_RELEASE_NULL(_piece[x][y]);
      }
    }
@@ -61,16 +61,18 @@ void TCtrl::Init(){
 // --------------------------------------------------
 // --------------------------------------------------
  void TCtrl::Draw(){
-   static int pt = 0;
+   static int ptx = 3;
+   static int pty = 3;
    //_piece[0][ct++]->setVisible(false);
 
-   Block blk(Parts::Z,1);
+   Block blk(Parts::Z,0);
    _tcore.Initialize(false);
-   _tcore.PutBlock(blk, 0, pt++, false);
+   _tcore.PutBlock(blk, ptx, pty, 0, 1, false);
 
-   for (int x = 0; x<_tcore.GetWidth(); x++) {
-     for (int y = 0; y<_tcore.GetHeight(); y++) {
-        if( _tcore._matrix0[x][y] || _tcore._matrix1[x][y] ){
+   for (int x = 0; x<(_tcore.GetWidth() - _offset_x - _offset_x); x++) {
+     for (int y = 0; y<(_tcore.GetHeight() - _offset_y - _offset_y); y++) {
+        if( _tcore._matrix0[x+ _offset_x][y+ _offset_y] || 
+            _tcore._matrix1[x+ _offset_x][y+ _offset_y] ){
           _piece[x][y]->setVisible(true);
         }else{
           _piece[x][y]->setVisible(false);

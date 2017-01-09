@@ -182,7 +182,7 @@ public:
    std::vector< std::vector<bool> >  _matrix1;
 
 public:
-    TCore(const int x=10, const int y=20):_width(x), _height(y){
+    TCore(const int x=10+4, const int y=20+4):_width(x), _height(y){
       Resize(x,y);
     }
     ~TCore() {}
@@ -193,7 +193,8 @@ public:
     int          GetHeight(){ return _height; }
     const char** GetBlockImage(Block &blk);
     bool         IsCollision(Block &blk, const int x, const int y);
-    void         PutBlock(Block &blk, const int posx, const int posy, bool  surface);
+    bool         PutBlock(Block &blk, int &posx, int &posy, const int dx, const int dy, bool surface);
+
     bool         IsRemovingBlock();
     
     ///std::vector< std::vector<bool> > *GetMatrics(){ return &_matrix0; }
