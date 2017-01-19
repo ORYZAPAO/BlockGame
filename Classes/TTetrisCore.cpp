@@ -12,7 +12,7 @@ void TCore::Initialize(bool surface){
   // Initialize
 
 
-  /// ブロックで敷き詰める
+  /// 最初に，ブロックで敷き詰める
   for (int xx = 0; xx<_width; xx++) {
     for (int yy = 0; yy<_height; yy++) {
 
@@ -21,9 +21,10 @@ void TCore::Initialize(bool surface){
     }
   }
 
-  /// ブロックを取り除く．
+  /// 中のブロックを取り除く．
   for (int xx = 2; xx<(_width-2); xx++) {
-    for (int yy = 0; yy<(_height-2); yy++) {
+    ////for (int yy = 0; yy<(_height-2); yy++) {
+    for (int yy = 0; yy<(_height-3); yy++) { //// !!! KARI KARI !!!
 
       if( surface )  _matrix0[xx][yy] = false;
       else           _matrix1[xx][yy] = false;

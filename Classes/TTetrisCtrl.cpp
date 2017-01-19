@@ -65,7 +65,7 @@ void TCtrl::Init(){
    static int pty = 3;
    //_piece[0][ct++]->setVisible(false);
 
-   Block blk(Parts::Z,0);
+   Block blk(Parts::L,1);
    _tcore.Initialize(false);
    _tcore.PutBlock(blk, ptx, pty, 0, 1, false);
 
