@@ -115,7 +115,8 @@ bool TCore::IsCollision(Block &blk, const int posx, const int posy){
  * Write Block Image in Matrix
  * ------------------------------------------------ */
 bool TCore::PutBlock(Block &blk,
-  int &posx, int &posy, /// Current Position
+  int       &posx, // Current Position
+  int       &posy, // 
   const int dx, const int dy,     /// incremental
   bool      surface) { // surface=0:, 1:
 

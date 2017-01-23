@@ -16,6 +16,9 @@ namespace PrettyTetris{
     int   _subNum;
   
     Block(Parts Num=Parts::Bar, int subNum=0):_number(Num), _subNum(subNum){}
+    void Set(Parts Num, int subNum) {
+      _number=Num; _subNum=subNum;
+    }
   };
   
   

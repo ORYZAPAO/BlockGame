@@ -17,6 +17,9 @@ public:
     
     void update(float dt);
 
+    void TTetrisScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
+
+
     // implement the "static create()" method manually
     CREATE_FUNC(TTetrisScene);
 

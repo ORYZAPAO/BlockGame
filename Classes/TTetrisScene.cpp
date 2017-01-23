@@ -2,7 +2,7 @@
 #include "SimpleAudioEngine.h"
 
 #include  "TTetrisCtrl.h"
-
+#include<memory>
 
 USING_NS_CC;
 
@@ -105,8 +105,22 @@ bool TTetrisScene::init()
     // Update Method
     this->scheduleUpdate();
 
+    // creating a keyboard event listener
+    auto keylistener = EventListenerKeyboard::create();
+    keylistener->onKeyPressed = CC_CALLBACK_2(TTetrisScene::onKeyPressed, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keylistener, this);
+
     ///layer->addChild(this->getPiece(), 0);
     return true;
+}
+
+
+// --------------------------------------------------
+// --------------------------------------------------
+void TTetrisScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event) {
+  log("Key with keycode %d pressed", keyCode);
+  _tctrl.TurnBlock();
+
 }
 
 
