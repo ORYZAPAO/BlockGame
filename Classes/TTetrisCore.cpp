@@ -57,7 +57,7 @@ void TCore::Initialize(bool surface){
 // Get Block Data Pointer
 //
 // --------------------------------------------------
-const char** TCore::GetBlockImage(Block &blk){
+const char** TCore::GetBlockImage(const Block &blk){
   const char **p;
   
   /// Select Parts
@@ -81,7 +81,7 @@ const char** TCore::GetBlockImage(Block &blk){
 // Judge Collision
 //
 // ------------------------------------------------ */
-bool TCore::IsCollision(Block &blk, const int posx, const int posy){
+bool TCore::IsCollision(const Block &blk, const int posx, const int posy){
   const char  **p;
   bool          retcode=true;
    
@@ -114,7 +114,7 @@ bool TCore::IsCollision(Block &blk, const int posx, const int posy){
  *
  * Write Block Image in Matrix
  * ------------------------------------------------ */
-bool TCore::PutBlock(Block &blk,
+bool TCore::PutBlock(const Block &blk,
   int       &posx, // Current Position
   int       &posy, // 
   const int dx, const int dy,     /// incremental

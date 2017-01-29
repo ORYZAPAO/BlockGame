@@ -195,9 +195,9 @@ public:
     void         Initialize(bool surface);
     int          GetWidth() { return _width;  }
     int          GetHeight(){ return _height; }
-    const char** GetBlockImage(Block &blk);
-    bool         IsCollision(Block &blk, const int x, const int y);
-    bool         PutBlock(Block &blk, int &posx, int &posy, const int dx, const int dy, bool surface);
+    const char** GetBlockImage(const Block &blk);
+    bool         IsCollision(const Block &blk, const int x, const int y);
+    bool         PutBlock(const Block &blk, int &posx, int &posy, const int dx, const int dy, bool surface);
 
     bool         IsRemovingBlock();
     
