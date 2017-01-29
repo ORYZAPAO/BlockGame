@@ -175,12 +175,13 @@ namespace PrettyTetris{
     "..0..",
     "....."  };
 
-   int       _width;
-   int       _height;
+   int          _width;
+   int          _height;
 
-   const int PatSizeX=5, PatSizeY=5;
+   const int    PatSizeX=5, PatSizeY=5;
   
 public:
+   Block        _currentBlock;
    std::vector< std::vector<bool> >  _matrix0;
    std::vector< std::vector<bool> >  _matrix1;
 

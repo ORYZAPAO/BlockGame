@@ -53,10 +53,10 @@ void TCore::Initialize(bool surface){
 
 
 
-
- // --------------------------------------------------
- // Get Block Data Pointer
- // --------------------------------------------------
+// --------------------------------------------------
+// Get Block Data Pointer
+//
+// --------------------------------------------------
 const char** TCore::GetBlockImage(Block &blk){
   const char **p;
   
@@ -77,10 +77,10 @@ const char** TCore::GetBlockImage(Block &blk){
 }
 
 
-/* --------------------------------------------------
- * Judge Collision
- *
- * ------------------------------------------------ */
+// --------------------------------------------------
+// Judge Collision
+//
+// ------------------------------------------------ */
 bool TCore::IsCollision(Block &blk, const int posx, const int posy){
   const char  **p;
   bool          retcode=true;

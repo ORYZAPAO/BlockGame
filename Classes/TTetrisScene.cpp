@@ -105,7 +105,9 @@ bool TTetrisScene::init()
     // Update Method
     this->scheduleUpdate();
 
+    //
     // creating a keyboard event listener
+    //
     auto keylistener = EventListenerKeyboard::create();
     keylistener->onKeyPressed = CC_CALLBACK_2(TTetrisScene::onKeyPressed, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(keylistener, this);
@@ -129,7 +131,7 @@ void TTetrisScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event) {
 void TTetrisScene::update(float delta) {
   static float sum = 0;
 
-  if ( (sum += delta) > 1.0){
+  if ( (sum += delta) > 0.25){
     _tctrl.NextStep();
     sum=0;
   }

@@ -50,7 +50,7 @@ void TCtrl::Init(){
 void TCtrl::TurnBlock() {
    static int Num=0;
 
-  _block.Set(Parts::L, Num);
+  _tcore._currentBlock.Set(Parts::L, Num);
   Num = (Num+1)%4;
 }
 
@@ -76,7 +76,7 @@ void TCtrl::TurnBlock() {
    //_piece[0][ct++]->setVisible(false);
 
    _tcore.Initialize(false);
-   _tcore.PutBlock(_block, ptx, pty, 0, 1, false);
+   _tcore.PutBlock(_tcore._currentBlock, ptx, pty, 0, 1, false);
 
    for (int x = 0; x<(_tcore.GetWidth() - _offset_x - _offset_x); x++) {
      for (int y = 0; y<(_tcore.GetHeight() - _offset_y - _offset_y); y++) {
