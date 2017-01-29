@@ -50,8 +50,7 @@ void TCtrl::Init(){
 void TCtrl::TurnBlock() {
    static int Num=0;
 
-  _tcore._currentBlock.Set(Parts::L, Num);
-  Num = (Num+1)%4;
+  _tcore._currentBlock.Turn();
 }
 
 

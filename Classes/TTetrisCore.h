@@ -19,6 +19,12 @@ namespace PrettyTetris{
     void Set(Parts Num, int subNum) {
       _number=Num; _subNum=subNum;
     }
+
+    void Turn() {
+      _subNum = (_subNum+1)%4;
+    }
+
+
   };
   
   
