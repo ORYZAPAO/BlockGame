@@ -23,8 +23,8 @@ void TCore::Initialize(bool surface){
 
   /// 中のブロックを取り除く．
   for (int xx = 2; xx<(_width-2); xx++) {
-    ////for (int yy = 0; yy<(_height-2); yy++) {
-    for (int yy = 0; yy<(_height-3); yy++) { //// !!! KARI KARI !!!
+    for (int yy = 2; yy<(_height-3); yy++) {
+    ///for (int yy = 0; yy<(_height - 2); yy++) {
 
       if( surface )  _matrix0[xx][yy] = false;
       else           _matrix1[xx][yy] = false;
@@ -117,7 +117,7 @@ void TCore::Turn() {
   Block turned_block = _currentBlock;
 
   turned_block.Turn(); /// ブロック回転
-  if( IsCollision(turned_block, _offset_x, _offset_y ) ){
+  if( IsCollision(turned_block, _pos_x, _pos_y ) ){
     return;
   }
 
