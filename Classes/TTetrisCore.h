@@ -184,10 +184,11 @@ namespace PrettyTetris{
    int          _height;
 
    const int    PatSizeX=5, PatSizeY=5;
-  
-public:
+
    int        _offset_x = 2;
    int        _offset_y = 2;
+
+public:
 
    Block        _currentBlock;
    std::vector< std::vector<bool> >  _matrix0;
@@ -201,11 +202,13 @@ public:
 
     void         Resize(const int x, const int y);
     void         Initialize(bool surface);
+    int          GetPosX() { return _offset_x; }
+    int          GetPosY() { return _offset_y; }
     int          GetWidth() { return _width;  }
     int          GetHeight(){ return _height; }
     const char** GetBlockImage(const Block &blk);
     bool         IsCollision(const Block &blk, const int x, const int y);
-    bool         IsTurn(const Block &blk);
+    void         Turn();
     bool         PutBlock(const Block &blk, int &posx, int &posy, const int dx, const int dy, bool surface);
 
     bool         IsRemovingBlock();

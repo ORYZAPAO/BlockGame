@@ -110,17 +110,20 @@ bool TCore::IsCollision(const Block &blk, const int posx, const int posy){
 
 
 // --------------------------------------------------
-//  IsTurn();
+//  Turn();
 //
 // --------------------------------------------------
-bool IsTurn(const Block &blk) {
-/*
-  Block backup_block = _currentBlock;
+void TCore::Turn() {
+  Block turned_block = _currentBlock;
 
-  if( IsCollision(blk,) )
-  */
+  turned_block.Turn(); /// ÉuÉçÉbÉNâÒì]
+  if( IsCollision(turned_block, _offset_x, _offset_y ) ){
+    return;
+  }
 
-  return true;
+  //
+  _currentBlock = turned_block;
+  return;
 }
 
 
