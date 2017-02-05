@@ -22,8 +22,6 @@ public:
   TCore      _tcore;
   Sprite    *_piece[10][20];    /// !!! KARI !!!
   
-  int        _offset_x = 2;
-  int        _offset_y = 2;
 
   CC_SYNTHESIZE_RETAIN(cocos2d::Layer*, _layer, Layer);
   ///CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, _piece, Piece);

@@ -21,9 +21,8 @@ namespace PrettyTetris{
     }
 
     void Turn() {
-      _subNum = (_subNum+1)%4;
+      _subNum = (_subNum + 1) % 4;
     }
-
 
   };
   
@@ -187,6 +186,9 @@ namespace PrettyTetris{
    const int    PatSizeX=5, PatSizeY=5;
   
 public:
+   int        _offset_x = 2;
+   int        _offset_y = 2;
+
    Block        _currentBlock;
    std::vector< std::vector<bool> >  _matrix0;
    std::vector< std::vector<bool> >  _matrix1;
@@ -203,6 +205,7 @@ public:
     int          GetHeight(){ return _height; }
     const char** GetBlockImage(const Block &blk);
     bool         IsCollision(const Block &blk, const int x, const int y);
+    bool         IsTurn(const Block &blk);
     bool         PutBlock(const Block &blk, int &posx, int &posy, const int dx, const int dy, bool surface);
 
     bool         IsRemovingBlock();

@@ -19,8 +19,8 @@ void TCtrl::Init(){
   
 
   /// Generate Matrix, Sprite Table
-  for(int x=0; x<(_tcore.GetWidth()- _offset_x - _offset_x); x++){
-    for(int y=0; y<(_tcore.GetHeight()- _offset_y - _offset_y); y++){
+  for(int x=0; x<(_tcore.GetWidth()- (_tcore._offset_x *2) ); x++){
+    for(int y=0; y<(_tcore.GetHeight()- (_tcore._offset_y*2) ); y++){
        const int space = 16 * 2;
 
       _piece[x][y] = Sprite::create("Piece.png"); /// Picture Size is 16pixel.
@@ -50,7 +50,7 @@ void TCtrl::Init(){
 void TCtrl::TurnBlock() {
    static int Num=0;
 
-  _tcore._currentBlock.Turn();
+   _tcore._currentBlock.Turn();
 }
 
 
@@ -58,8 +58,8 @@ void TCtrl::TurnBlock() {
 // --------------------------------------------------
  TCtrl::~TCtrl() {
    /// Clear Matricx
-   for (int x = 0; x<(_tcore.GetWidth() - _offset_x - _offset_x); x++) {
-     for (int y = 0; y<(_tcore.GetHeight() - _offset_y - _offset_y); y++) {
+   for (int x = 0; x<(_tcore.GetWidth() - (_tcore._offset_x * 2) ); x++) {
+     for (int y = 0; y<(_tcore.GetHeight() - (_tcore._offset_y * 2) ); y++) {
        CC_SAFE_RELEASE_NULL(_piece[x][y]);
      }
    }
@@ -77,10 +77,10 @@ void TCtrl::TurnBlock() {
    _tcore.Initialize(false);
    _tcore.PutBlock(_tcore._currentBlock, ptx, pty, 0, 1, false);
 
-   for (int x = 0; x<(_tcore.GetWidth() - _offset_x - _offset_x); x++) {
-     for (int y = 0; y<(_tcore.GetHeight() - _offset_y - _offset_y); y++) {
-        if( _tcore._matrix0[x+ _offset_x][y+ _offset_y] || 
-            _tcore._matrix1[x+ _offset_x][y+ _offset_y] ){
+   for (int x = 0; x<(_tcore.GetWidth() - (_tcore._offset_x * 2 )); x++) {
+     for (int y = 0; y<(_tcore.GetHeight() - (_tcore._offset_y * 2) ); y++) {
+        if( _tcore._matrix0[x+ _tcore._offset_x][y+ _tcore._offset_y] ||
+            _tcore._matrix1[x+ _tcore._offset_x][y+ _tcore._offset_y] ){
           _piece[x][y]->setVisible(true);
         }else{
           _piece[x][y]->setVisible(false);

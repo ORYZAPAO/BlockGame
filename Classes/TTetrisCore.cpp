@@ -109,6 +109,22 @@ bool TCore::IsCollision(const Block &blk, const int posx, const int posy){
 }
 
 
+// --------------------------------------------------
+//  IsTurn();
+//
+// --------------------------------------------------
+bool IsTurn(const Block &blk) {
+/*
+  Block backup_block = _currentBlock;
+
+  if( IsCollision(blk,) )
+  */
+
+  return true;
+}
+
+
+
 /* --------------------------------------------------
  * Put Block
  *
