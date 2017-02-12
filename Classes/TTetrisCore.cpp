@@ -114,15 +114,15 @@ bool TCore::IsCollision(const Block &blk, const int posx, const int posy){
 //
 // --------------------------------------------------
 void TCore::Turn() {
-  Block turned_block = _currentBlock;
+  Block pre_turned_block = _currentBlock;
 
-  turned_block.Turn(); /// ÉuÉçÉbÉNâÒì]
-  if( IsCollision(turned_block, _pos_x, _pos_y ) ){
+  pre_turned_block.Turn();
+  if( IsCollision(pre_turned_block, _pos_x, _pos_y ) ){
     return;
   }
 
   //
-  _currentBlock = turned_block;
+  _currentBlock = pre_turned_block;
   return;
 }
 
@@ -142,6 +142,7 @@ bool TCore::PutBlock(const Block &blk,
   int next_posx = _pos_x;
   int next_posy = _pos_y;
 
+  //
   if ( IsCollision(blk, _pos_x+dx, _pos_y+dy) == false){
     next_posx += dx;
     next_posy += dy;
