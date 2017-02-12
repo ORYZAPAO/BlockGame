@@ -18,12 +18,12 @@ void TCtrl::Init(){
   ///setPiece(Sprite::create("Piece.png"));
   
 
-  /// Generate Matrix, Sprite Table
-  for(int x=0; x<(_tcore.GetWidth()- (_tcore.GetPosX() * 2) ); x++){
-    for(int y=0; y<(_tcore.GetHeight()- (_tcore.GetPosY() * 2) ); y++){
+  // Generate Matrix, Sprite Table
+  for(int x=0; x<(_tcore.GetWidth()- (_tcore.GetBaseX() * 2) ); x++){
+    for(int y=0; y<(_tcore.GetHeight()- (_tcore.GetBaseY() * 2) ); y++){
        const int space = 16 * 2;
 
-      _piece[x][y] = Sprite::create("Piece.png"); /// Picture Size is 16pixel.
+      _piece[x][y] = Sprite::create("Piece.png"); // Picture Size is 16 x 16 pixels.
       _piece[x][y]->setPosition(  Vec2((visibleSize.width /2 + (16 * x) + origin.x), 
                                        (                       (16 * (_tcore.GetHeight() - y)) + origin.y  + space) ) );
       //_piece[x][y]->setVisible(false);
@@ -58,8 +58,8 @@ void TCtrl::TurnBlock() {
 // --------------------------------------------------
  TCtrl::~TCtrl() {
    /// Clear Matricx
-   for (int x = 0; x<(_tcore.GetWidth() - (_tcore.GetPosX() * 2) ); x++) {
-     for (int y = 0; y<(_tcore.GetHeight() - (_tcore.GetPosY() * 2) ); y++) {
+   for (int x = 0; x<(_tcore.GetWidth() - (_tcore.GetBaseX() * 2) ); x++) {
+     for (int y = 0; y<(_tcore.GetHeight() - (_tcore.GetBaseY() * 2) ); y++) {
        CC_SAFE_RELEASE_NULL(_piece[x][y]);
      }
    }
@@ -70,17 +70,15 @@ void TCtrl::TurnBlock() {
 // --------------------------------------------------
 // --------------------------------------------------
  void TCtrl::Draw(){
-   static int ptx = 3;
-   static int pty = 3;
    //_piece[0][ct++]->setVisible(false);
 
    _tcore.Initialize(false);
-   _tcore.PutBlock(_tcore._currentBlock, ptx, pty, 0, 1, false);
+   _tcore.PutBlock(_tcore._currentBlock, 0, 1, false); /// Take Down _pos_y+1
 
-   for (int x = 0; x<(_tcore.GetWidth() - (_tcore.GetPosX() * 2 )); x++) {
-     for (int y = 0; y<(_tcore.GetHeight() - (_tcore.GetPosY() * 2) ); y++) {
-        if( _tcore._matrix0[x+ _tcore.GetPosX()][y+ _tcore.GetPosY()] ||
-            _tcore._matrix1[x+ _tcore.GetPosX()][y+ _tcore.GetPosY()] ){
+   for (int x = 0; x<(_tcore.GetWidth() - (_tcore.GetBaseX() * 2 )); x++) {
+     for (int y = 0; y<(_tcore.GetHeight() - (_tcore.GetBaseY() * 2) ); y++) {
+        if( _tcore._matrix0[x+ _tcore.GetBaseX()][y+ _tcore.GetBaseY()] ||
+            _tcore._matrix1[x+ _tcore.GetBaseX()][y+ _tcore.GetBaseY()] ){
           _piece[x][y]->setVisible(true);
         }else{
           _piece[x][y]->setVisible(false);

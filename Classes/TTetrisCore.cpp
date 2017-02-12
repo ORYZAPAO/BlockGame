@@ -110,7 +110,7 @@ bool TCore::IsCollision(const Block &blk, const int posx, const int posy){
 
 
 // --------------------------------------------------
-//  Turn();
+//  Turn()
 //
 // --------------------------------------------------
 void TCore::Turn() {
@@ -134,17 +134,15 @@ void TCore::Turn() {
  * Write Block Image in Matrix
  * ------------------------------------------------ */
 bool TCore::PutBlock(const Block &blk,
-  int       &posx, // Current Position
-  int       &posy, // 
-  const int dx, const int dy,     /// incremental
+  const int dx, const int dy,     // incremental Value
   bool      surface) { // surface=0:, 1:
 
   bool ret_code = false;
 
-  int next_posx = posx;
-  int next_posy = posy;
+  int next_posx = _pos_x;
+  int next_posy = _pos_y;
 
-  if ( IsCollision(blk, posx+dx, posy+dy) == false){
+  if ( IsCollision(blk, _pos_x+dx, _pos_y+dy) == false){
     next_posx += dx;
     next_posy += dy;
     ret_code = true;
@@ -166,8 +164,8 @@ bool TCore::PutBlock(const Block &blk,
   }
 
   //
-  posx = next_posx;
-  posy = next_posy;
+  _pos_x = next_posx;
+  _pos_y = next_posy;
 
 END:
   return(ret_code);
