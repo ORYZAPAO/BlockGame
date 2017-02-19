@@ -17,7 +17,7 @@ public:
     
     void update(float dt);
 
-    void TTetrisScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
+  void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, Event* event);
 
 
     // implement the "static create()" method manually
