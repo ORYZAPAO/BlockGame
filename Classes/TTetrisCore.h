@@ -26,17 +26,36 @@ namespace PrettyTetris{
 
   };
   
-  
+
+  // _matrix0 [0-(_width-1)] [0-(_heght-1)]
+  // _matrix1 [0-(_width-1)] [0-(_heght-1)]
+  //
+  //  |<<-------<width>---------->>|
+  //
+  //  (0, 0)-----------------------+  -+-
+  //  |                            |   |
+  //  |  (_base_x, _base_y)-----+  |   |
+  //  |  |                      |  |   |
+  //  |  |                      |  |   |h
+  //  |  |                      |  |   |e
+  //  |  |                      |  |   |i
+  //  |  |  (_posx, _posy)      |  |   |g
+  //  |  |        o             |  |   |h
+  //  |  |       ooo            |  |   |t
+  //  |  |                      |  |   |
+  //  |  |                      |  |   |
+  //  |  +----------------------+  |   |
+  //  |                            |   |
+  //  +----------------------------+  -+-
   //
   class TCore {
 
    #include"BlockPatData.h"
 
+   const int    PatSizeX = 5, PatSizeY = 5;
+   
    int          _width;
    int          _height;
-
-   const int    PatSizeX=5, PatSizeY=5;
-
 
 public:
    int          _base_x = 2;
@@ -57,15 +76,15 @@ public:
 
     void         Resize(const int x, const int y);
     void         Initialize(bool surface);
-    int          GetBaseX() { return _base_x; }
-    int          GetBaseY() { return _base_y; }
+    int          GetBaseX()     { return _base_x;  }
+    int          GetBaseY()     { return _base_y;  }
 
     int          SetPosX(int x) { return _pos_x=x; }
     int          SetPosY(int y) { return _pos_y=y; }
-    int          GetPosX() { return _pos_x; }
-    int          GetPosY() { return _pos_y; }
-    int          GetWidth() { return _width;  }
-    int          GetHeight(){ return _height; }
+    int          GetPosX()      { return _pos_x;   }
+    int          GetPosY()      { return _pos_y;   }
+    int          GetWidth()     { return _width;   }
+    int          GetHeight()    { return _height;  }
     const char** GetBlockImage(const Block &blk);
     bool         IsCollision(const Block &blk, const int x, const int y);
     void         Turn();
