@@ -30,23 +30,23 @@ namespace PrettyTetris{
   // _matrix0 [0-(_width-1)] [0-(_heght-1)]
   // _matrix1 [0-(_width-1)] [0-(_heght-1)]
   //
-  //  |<<-------<width>---------->>|
+  //  |<<-------< _width >------->>|
   //
   //  (0, 0)-----------------------+  -+-
   //  |                            |   |
   //  |  (_base_x, _base_y)-----+  |   |
-  //  |  |                      |  |   |
+  //  |  |                      |  |   |_
   //  |  |                      |  |   |h
   //  |  |                      |  |   |e
   //  |  |                      |  |   |i
   //  |  |  (_posx, _posy)      |  |   |g
-  //  |  |        o             |  |   |h
-  //  |  |       ooo            |  |   |t
+  //  |  |    o                 |  |   |h
+  //  |  |   ooo                |  |   |t
   //  |  |                      |  |   |
   //  |  |                      |  |   |
   //  |  +----------------------+  |   |
   //  |                            |   |
-  //  +----------------------------+  -+-
+  //  +---------------------------(_width-1, _height-1)
   //
   class TCore {
 
@@ -58,11 +58,14 @@ namespace PrettyTetris{
    int          _height;
 
 public:
-   int          _base_x = 2;
+   int          _base_x = 2; /// Base Position
    int          _base_y = 2;
 
-   int          _pos_x = 2;
-   int          _pos_y = 2;
+   int          _pos_x  = 2; /// Block Position
+   int          _pos_y  = 2;
+
+   int          _space = 2;
+
 
    Block        _currentBlock;
    std::vector< std::vector<bool> >  _matrix0;

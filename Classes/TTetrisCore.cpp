@@ -22,8 +22,8 @@ void TCore::Initialize(bool surface){
   }
 
   /// 中のブロックを取り除く．
-  for (int xx = 2; xx<(_width-2); xx++) {
-    for (int yy = 2; yy<(_height-3); yy++) {
+  for (int xx = _space; xx<(_width- _space); xx++) {
+    for (int yy = _space; yy<(_height- _space); yy++) {
     ///for (int yy = 0; yy<(_height - 2); yy++) {
 
       if( surface )  _matrix0[xx][yy] = false;
