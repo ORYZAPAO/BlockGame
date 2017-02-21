@@ -58,13 +58,14 @@ namespace PrettyTetris{
    int          _height;
 
 public:
-   int          _base_x = 2; /// Base Position
-   int          _base_y = 2;
+   int          _space = 2;
+
+   int          _base_x = _space; /// Base Position
+   int          _base_y = _space;
 
    int          _pos_x  = 2; /// Block Position
    int          _pos_y  = 2;
 
-   int          _space = 2;
 
 
    Block        _currentBlock;
