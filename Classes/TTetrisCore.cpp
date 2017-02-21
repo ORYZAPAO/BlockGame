@@ -23,8 +23,8 @@ void TCore::Initialize(bool surface){
 
   /// 中のブロックを取り除く．
   for (int xx = _space; xx<(_width- _space); xx++) {
-    for (int yy = _space; yy<(_height- _space); yy++) {
-    ///for (int yy = 0; yy<(_height - 2); yy++) {
+    ///for (int yy = _space; yy<(_height- _space); yy++) {
+    for (int yy = _space; yy<(_height- _space)-1; yy++) {//////////////
 
       if( surface )  _matrix0[xx][yy] = false;
       else           _matrix1[xx][yy] = false;
