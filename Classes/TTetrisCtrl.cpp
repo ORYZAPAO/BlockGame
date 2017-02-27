@@ -40,8 +40,8 @@ void TCtrl::Init(){
 
 // --------------------------------------------------
 // --------------------------------------------------
- void TCtrl::NextStep(){
-     Draw();
+void TCtrl::NextStep(){
+   Draw();
 }
 
 
@@ -71,10 +71,9 @@ void TCtrl::TurnBlock() {
 // --------------------------------------------------
  void TCtrl::Draw(){
    //_piece[0][ct++]->setVisible(false);
-
-   _tcore.Initialize(false);
-   _tcore.PutBlock(_tcore._currentBlock, 0, 1, false); /// Take Down _pos_y+1
-
+   _tcore.NextStep();
+   
+   // Display
    for (int x = 0; x<(_tcore.GetWidth() - (_tcore.GetBaseX() * 2 )); x++) {
      for (int y = 0; y<(_tcore.GetHeight() - (_tcore.GetBaseY() * 2) ); y++) {
         if( _tcore._matrix0[x+ _tcore.GetBaseX()][y+ _tcore.GetBaseY()] ||

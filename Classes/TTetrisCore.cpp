@@ -127,6 +127,19 @@ void TCore::Turn() {
 }
 
 
+/* --------------------------------------------------
+ * Copy1to0
+ *
+ * Copy _matrix1 to _matrix0
+ * ------------------------------------------------ */
+void TCore::Copy1to0(){
+  for (int xx = _base_x; xx<(_width-_base_x); xx++) {
+    for (int yy = _base_y; yy<(_height-_base_y); yy++) {
+      _matrix0[xx][yy] =  _matrix0[xx][yy] | _matrix1[xx][yy];
+    }
+  }    
+}
+
 
 /* --------------------------------------------------
  * Put Block
@@ -174,10 +187,73 @@ END:
 
 
 /* --------------------------------------------------
- * IsRemovingBlock
+ * IsFilledLine
  *
- * Check if Remove the block
+ * This is called by RemoveLine()
  * ------------------------------------------------ */
-bool  TCore::IsRemovingBlock(){
-  return false;
+bool  TCore::IsFilledLine(int yy){
+  int   count;
+  bool  ret_code=false;
+
+  count = 0;
+  for(int xx=(_base_x); xx<(_width-_base_x); xx++){
+    if( _matrix0[xx][yy] ) count++;
+  }
+  
+  if( count >= (_width-(_base_x*2)) ){
+    ret_code= true;
+  }
+
+ END:;  
+  return ret_code;
+}
+
+
+/* --------------------------------------------------
+ * DownLine
+ *
+ * Take down the filled line
+ * This is called by RemoveLine()
+ * ------------------------------------------------ */
+void TCore::DownLine(int y){
+
+  // Take Down Line
+  for(int yy = y; yy>(_base_y); yy--){
+    for(int xx=(_base_x); xx<(_width-_base_x); xx++){
+      _matrix0[xx][yy] = _matrix0[xx][yy-1];
+    }
+  }
+
+  // Remove Top Line
+  for(int xx=_base_x; xx<(_width-_base_x); xx++){
+    _matrix0[xx][_base_y] = false ;
+  }
+
+}  
+
+
+/* --------------------------------------------------
+ * RemoveLine
+ *
+ * 
+ * ------------------------------------------------ */
+void TCore::RemoveLine(){
+  for(int yy=(_width - _base_y)-1; yy>=(_base_y); yy--){
+    if( IsFilledLine(yy) ) DownLine(yy);
+  }
+}
+  
+
+/* --------------------------------------------------
+ * NextStep
+ *
+ * ------------------------------------------------ */
+void TCore::NextStep(){
+  RemoveLine();
+
+  // Clear and Redraw Block Image in _matrix1
+  Initialize(false);
+  if( PutBlock(_currentBlock, 0, 1, false) == false){ /// Take Down _pos_y+1
+    Copy1to0();
+  }
 }

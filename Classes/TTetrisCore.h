@@ -92,9 +92,15 @@ public:
     const char** GetBlockImage(const Block &blk);
     bool         IsCollision(const Block &blk, const int x, const int y);
     void         Turn();
+    void         Copy1to0();
+    
     bool         PutBlock(const Block &blk, const int dx, const int dy, bool surface);
 
-    bool         IsRemovingBlock();
+    void         DownLine(int y);
+    bool         IsFilledLine(int yy);
+    void         RemoveLine();    
+    void         NextStep();
+
     
     ///std::vector< std::vector<bool> > *GetMatrics(){ return &_matrix0; }
 
