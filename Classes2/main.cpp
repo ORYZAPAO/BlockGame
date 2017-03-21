@@ -43,7 +43,7 @@ int main(){
       down = tcore.TakeDownBlock(blk);
       if( (!pre_down) && (!down) ){
         tcore.PutPartsToBckGround(blk);
-        blk = {tinytetris::Parts::L, 0, 2,2};
+        blk = {tinytetris::Parts::Totsu, 0, 2,2};
       }
     }
   }
