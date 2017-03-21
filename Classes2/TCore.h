@@ -31,7 +31,7 @@ enum Parts { Bar=0, L=1, RevL=2, Z=3, RevZ=4, Totsu=5};
 
  struct Block{
    Parts _parts;
-   int   _number;
+   int   _turn;
    int   _pos_x;
    int   _pos_y;
  };

@@ -33,7 +33,7 @@ const char** TCore::GetPartsImage(const Block &blk){
   case 5: pat = _blkPatten_Totsu;  break;
   }
   
-  return( pat + (blk._number * _patSize_y) );
+  return( pat + (blk._turn * _patSize_y) );
 }
 
 
@@ -161,7 +161,7 @@ bool TCore::TurnBlock(Block &blk){
   bool ret=false;
   Block tmp_blk = blk;
 
-  tmp_blk._number = (tmp_blk._number+1) % 4; // 0,1,2,3,0,1,2,3... 
+  tmp_blk._turn = (tmp_blk._turn+1) % 4; // 0,1,2,3,0,1,2,3... 
   if( IsCollision(tmp_blk) ) goto END;
 
   ret=true;
@@ -244,7 +244,7 @@ void TCore::DbgPrint(const Block &blk){
 //
 void TCore::DbgPrintBlk(const Block &blk){
   std::cout << boost::format("P(%d), Num(%d), (%d,%d)\n")
-    % blk._parts % blk._number
+    % blk._parts % blk._turn
     % blk._pos_x % blk._pos_y;
 }
 
