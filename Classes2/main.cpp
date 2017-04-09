@@ -30,13 +30,10 @@ int main(){
 
     if      ( k == 'k' ){
       tcore.TurnBlock(blk);
-      down = true;
     }else if( k == 's' ){
       tcore.MoveBlock(blk, true);
-      down = true;
     }else if( k == 'd' ){      
       tcore.MoveBlock(blk, false);
-      down = true;
     }else{      
 
       pre_down = down;
