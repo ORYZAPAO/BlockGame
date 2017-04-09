@@ -15,7 +15,5 @@ TCore.o: TCore.cpp TCore.h
 main.o: main.cpp TCore.h
 	$(CPP) -c $(CPPFLAGS) $< 
 
-
-
 clean :
-	rm tt *.o
+	rm tt.* *.o
